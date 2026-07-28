@@ -1,3 +1,5 @@
+#ifndef PIPELINE_H
+#define PIPELINE_H
 #include <iostream>
 #include <string>
 #include <vector>
@@ -7,30 +9,41 @@
 class Pipeline{
 
     protected:
-
-    ConnectorFactory* factory;
-    std::vector<Transformation*> steps;
-    int stage;
-    std::vector<std::string> records;
+                    ConnectorFactory* factory;
+                    std::vector<Transformation*> steps;
+                    int stage;
+                    std::vector<std::string> records;
 
     public:
 
-    Pipeline(ConnectorFactory*);
-    static void run();
-    void addStep(Transformation*);
-    RunCheckpoint* createCheckpoint();
-    ~Pipeline();
+                    Pipeline(ConnectorFactory*);
+                    static void run();
+                    void addStep(Transformation*);
+                    RunCheckpoint* createCheckpoint();
+                    ~Pipeline();
 
 
     protected:
 
-    void connect();
-   virtual void extract() =0;
-   void transform();
-   virtual void load();
-
-
-   
+                    void connect();
+                    virtual void extract() =0;
+                    void transform();
+                    virtual void load();
 
 
 };
+
+class BatchPipeline{
+
+    protected:
+                    void extract();
+                    void load();
+
+};
+
+class StreamingPipeline{
+
+    protected:
+                        void extract();
+                        void load();
+ };

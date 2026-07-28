@@ -35,3 +35,29 @@
 
 
    }
+
+
+
+   //batch pipeline
+
+void BatchPipeline::extract(){
+
+}
+
+
+void BatchPipeline::load(){
+
+    
+}
+
+
+//streamingpipeline
+
+void StreamingPipeline::extract(){
+
+}
+
+
+void StreamingPipeline::load(){
+
+}
