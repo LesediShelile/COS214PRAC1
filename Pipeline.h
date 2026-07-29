@@ -5,6 +5,7 @@
 #include <vector>
 #include "ConnectorFactory.h"
 #include "Transformation.h"
+#include "RunCheckpoint.h"
 
 class Pipeline{
 
@@ -17,7 +18,7 @@ class Pipeline{
     public:
 
                     Pipeline(ConnectorFactory*);
-                    static void run();
+                    void run();
                     void addStep(Transformation*);
                     RunCheckpoint* createCheckpoint();
                     ~Pipeline();
@@ -28,12 +29,12 @@ class Pipeline{
                     void connect();
                     virtual void extract() =0;
                     void transform();
-                    virtual void load();
+                    virtual void load()=0;
 
 
 };
 
-class BatchPipeline{
+class BatchPipeline: public Pipeline{
 
     protected:
                     void extract();
@@ -41,9 +42,11 @@ class BatchPipeline{
 
 };
 
-class StreamingPipeline{
+class StreamingPipeline : public Pipeline{
 
     protected:
                         void extract();
                         void load();
  };
+
+ #endif
