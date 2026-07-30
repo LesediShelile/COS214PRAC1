@@ -10,10 +10,10 @@ class Connector{
                 std::string source;
 
     public:
-                Connector(std::string);
-                std::vector<std::string> extract();
-                std::string getSource();
-                ~Connector();
+                Connector(std::string source);
+                virtual std::vector<std::string> extract() = 0;
+                std::string getSource() const;
+                virtual ~Connector();
 
 
 
