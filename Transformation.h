@@ -20,24 +20,9 @@ class Transformation{
 
 
 
-class DeduplicateStep: public Transformation{
-    
-    public:
-            // constructor not in UML
-            DeduplicateStep();
-
-            Transformation* clone();
-            std::vector<std::string> apply(std::vector<std::string>);
-};
 
 
-class AggregateByRegionStep: public Transformation{
 
 
-    public:
-            AggregateByRegionStep();
-            Transformation* clone();
-            std::vector<std::string> apply(std::vector<std::string>);
-};
 
 #endif

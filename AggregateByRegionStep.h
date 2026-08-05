@@ -3,12 +3,13 @@
 
 #include "Transformation.h"
 
-// ConcretePrototype
-class AggregateByRegionStep : public Transformation {
-public:
-    AggregateByRegionStep();
-    Transformation* clone() override;
-    std::vector<std::string> apply(std::vector<std::string> records) override;
+class AggregateByRegionStep: public Transformation{
+
+
+    public:
+            AggregateByRegionStep();
+            Transformation* clone();
+            std::vector<std::string> apply(std::vector<std::string>);
 };
 
 #endif

@@ -1,52 +1,48 @@
 #ifndef PIPELINE_H
 #define PIPELINE_H
-#include <iostream>
+
 #include <string>
 #include <vector>
 #include "ConnectorFactory.h"
 #include "Transformation.h"
 #include "RunCheckpoint.h"
 
-class Pipeline{
+// AbstractClass (Template Method) / Originator (Memento)
+class Pipeline {
+protected:
+    ConnectorFactory* factory;
+    std::vector<Transformation*> steps;
+    int stage;
+    std::vector<std::string> records;
 
-    protected:
-                    ConnectorFactory* factory;
-                    std::vector<Transformation*> steps;
-                    int stage;
-                    std::vector<std::string> records;
+public:
+    Pipeline(ConnectorFactory* factory);
 
-    public:
+    // Template method: fixes the algorithm's skeleton. Deliberately
+    // NOT virtual - subclasses may not change the order of stages.
+    void run();
 
-                    Pipeline(ConnectorFactory*);
-                    void run();
-                    void addStep(Transformation*);
-                    RunCheckpoint* createCheckpoint();
-                    ~Pipeline();
+    void addStep(Transformation* step);
 
+protected:
+    // Concrete step: same for every pipeline.
+    void connect();
 
-    protected:
+    // Primitive operation: each concrete pipeline decides how to extract.
+    virtual void extract() = 0;
 
-                    void connect();
-                    virtual void extract() =0;
-                    void transform();
-                    virtual void load()=0;
+    // Concrete step: same for every pipeline.
+    void transform();
 
+    // Primitive operation: each concrete pipeline decides how to load.
+    virtual void load() = 0;
 
+public:
+    // Memento hooks (Originator role).
+    RunCheckpoint* createCheckpoint();
+    void restore(RunCheckpoint* checkpoint);
+
+    virtual ~Pipeline();
 };
 
-class BatchPipeline: public Pipeline{
-
-    protected:
-                    void extract();
-                    void load();
-
-};
-
-class StreamingPipeline : public Pipeline{
-
-    protected:
-                        void extract();
-                        void load();
- };
-
- #endif
+#endif

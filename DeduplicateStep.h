@@ -3,12 +3,14 @@
 
 #include "Transformation.h"
 
-// ConcretePrototype
-class DeduplicateStep : public Transformation {
-public:
-    DeduplicateStep();
-    Transformation* clone() override;
-    std::vector<std::string> apply(std::vector<std::string> records) override;
+class DeduplicateStep: public Transformation{
+    
+    public:
+            // constructor not in UML
+            DeduplicateStep();
+
+            Transformation* clone();
+            std::vector<std::string> apply(std::vector<std::string>);
 };
 
 #endif

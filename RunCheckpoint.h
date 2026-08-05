@@ -1,24 +1,21 @@
 #ifndef RUNCHECKPOINT_H
 #define RUNCHECKPOINT_H
+
 #include <string>
 #include <vector>
 
-class RunCheckpoint{
+// Memento
+class RunCheckpoint {
+    
+    friend class Pipeline;
 
-    private:
-            int stage;
-            std::vector<std::string> records;
+private:
+    int stage;
+    std::vector<std::string> records;
 
-    public:
-            RunCheckpoint(int, std::vector<std::string>);
-            int getStage();
-            std::vector<std::string> getRecords();
-
+    RunCheckpoint(int stage, std::vector<std::string> records);
+    int getStage() const;
+    std::vector<std::string> getRecords() const;
 };
-
-
-
-
-
 
 #endif
