@@ -19,7 +19,7 @@ public:
     Pipeline(ConnectorFactory* factory);
 
     // Template method: fixes the algorithm's skeleton. Deliberately
-    // NOT virtual - subclasses may not change the order of stages.
+    // NOT virtual because subclasses should not change the order of stages.
     void run();
 
     void addStep(Transformation* step);
